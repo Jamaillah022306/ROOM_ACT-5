@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
-import 'auth_service.dart';
+import 'demo_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -23,17 +23,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
       showMessage('Please fill in all fields.');
       return;
     }
+    if (username.length < 3) {
+      showMessage('Username must contain at least three characters.');
+      return;
+    }
+    if (username.toLowerCase() == 'admin') {
+      showMessage('The username admin is reserved.');
+      return;
+    }
+    if (password.length < 6) {
+      showMessage('Password must contain at least six characters.');
+      return;
+    }
     if (password != confirm) {
       showMessage('Passwords do not match.');
       return;
     }
-    if (!AuthService.register(username, password)) {
-      showMessage('Username already exists.');
-      return;
-    }
+
+    // Save the account
+    DemoAuth.register(
+      usernameController.text.trim(),
+      passwordController.text,
+    );
 
     showMessage('Account created! You can now log in.');
-    Navigator.pop(context);
+
+    // Return to Login
+    Navigator.of(context).pop();
   }
 
   void showMessage(String message) {

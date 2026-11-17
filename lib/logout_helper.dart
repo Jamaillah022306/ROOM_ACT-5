@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'auth_service.dart';
+import 'demo_auth.dart';
 import 'login_screen.dart';
 
 void showLogoutDialog(BuildContext context) {
@@ -16,10 +16,12 @@ void showLogoutDialog(BuildContext context) {
         ElevatedButton(
           style: ElevatedButton.styleFrom(minimumSize: const Size(100, 40)),
           onPressed: () {
-            AuthService.logout();
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const LoginScreen()),
+            DemoAuth.logout();
+
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => const LoginScreen(),
+              ),
               (route) => false,
             );
           },

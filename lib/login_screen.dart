@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
-import 'auth_service.dart';
+import 'demo_auth.dart';
 import 'main_screen.dart';
 import 'register_screen.dart';
 
@@ -25,14 +25,20 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    if (!AuthService.login(username, password)) {
+    final isValid = DemoAuth.login(
+      usernameController.text.trim(),
+      passwordController.text,
+    );
+
+    if (!isValid) {
       showMessage('Invalid username or password.');
       return;
     }
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const MainScreen()),
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const MainScreen(),
+      ),
     );
   }
 

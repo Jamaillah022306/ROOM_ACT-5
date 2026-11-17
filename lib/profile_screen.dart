@@ -18,10 +18,17 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 12),
-                const CircleAvatar(
-                  radius: 60,
-                  backgroundColor: AppColors.maroon,
-                  child: Icon(Icons.person, size: 70, color: Colors.white),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
+                    color: AppColors.maroon,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const CircleAvatar(
+                    radius: 60,
+                    backgroundColor: AppColors.maroonLight,
+                    backgroundImage: AssetImage('assets/cutie.jpg'),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -51,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                       ListTile(
                         leading: Icon(Icons.email, color: AppColors.maroon),
                         title: Text('Email'),
-                        subtitle: Text('j.santi.554449@umindanao.edu.ph'), 
+                        subtitle: Text('j.santi.554449@umindanao.edu.ph'),
                       ),
                     ],
                   ),
